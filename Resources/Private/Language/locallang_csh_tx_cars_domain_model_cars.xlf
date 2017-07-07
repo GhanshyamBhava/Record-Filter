@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-06-29T14:36:03Z" product-name="cars">
+		<header/>
+		<body>
+			<trans-unit id="tx_cars_domain_model_fecars">
+				<source>FE Cars</source>
+			</trans-unit>
+			<trans-unit id="tx_cars_domain_model_fecars.description">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="name.description">
+				<source>name</source>
+			</trans-unit>
+			<trans-unit id="image.description">
+				<source>image</source>
+			</trans-unit>
+			<trans-unit id="price.description">
+				<source>price</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="company.description">
+				<source>company</source>
+			</trans-unit>
+			<trans-unit id="car_class.description">
+				<source>carClass</source>
+			</trans-unit>
+			<trans-unit id="fuel_type.description">
+				<source>fuelType</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

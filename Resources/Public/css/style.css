@@ -1,0 +1,28 @@
+body{
+  background: transparent;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+  background: rgba(0, 0, 0, 0.5) url(../image/bg.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.post-container {
+  border: 5px solid #333;
+  overflow: auto
+}
+.post-thumb {
+    float: left
+}
+.post-thumb img {
+    display: block
+}
+.post-content {
+  padding: 3%;
+  margin-left: 300px
+}
+.post-title {
+    font-weight: bold;
+    font-size: 200%
+}
+

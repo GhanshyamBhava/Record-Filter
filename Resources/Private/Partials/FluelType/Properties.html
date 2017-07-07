@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<table class="tx-cars" >
+	<tr>
+		<td>
+			<f:translate key="tx_cars_domain_model_cars.name" />
+		</td>
+		<td>
+		{cars.name}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_cars_domain_model_cars.image" />
+		</td>
+		<td>
+				<f:image src="{cars.image.originalResource.publicUrl}" width="200"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_cars_domain_model_cars.price" />
+		</td>
+		<td>
+		{cars.price}
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<f:translate key="tx_cars_domain_model_cars.description" />
+		</td>
+		<td>
+		{cars.description}
+		</td>
+	</tr>
+</table>
+</html>

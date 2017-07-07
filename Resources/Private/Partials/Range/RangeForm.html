@@ -1,0 +1,8 @@
+<div class="col-md-12">
+  <div class="form-group">
+    <label for="amount" >Your Range :<span id="amount"></span></label> (Price In Lacs.)
+    <f:form.hidden property="maxprice" id="maxprice" value="" />
+    <f:form.hidden property="minprice" additionalAttributes="{pattern: '[0-9]{0,3}'}" id="minprice" value="" />
+    <div id="slider" style="margin-top:5%"></div>
+  </div>
+</div>

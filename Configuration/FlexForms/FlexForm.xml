@@ -1,0 +1,26 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT type="array">
+                <TCEforms>
+                    <sheetTitle>Configuration Section</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el type="array">
+                    <settings.maxItem type="array">
+                        <TCEforms type="array">
+                            <label>Max Item Per Page</label>
+                            <config>
+                              <type>input</type>
+                              <eval>trim</eval>
+                            </config>
+                        </TCEforms>
+                    </settings.maxItem>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

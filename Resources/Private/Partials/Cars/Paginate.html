@@ -1,0 +1,32 @@
+<div align="center">
+	<ul class="pagination" align="center">
+		<li>
+	    	<f:if condition="{previous}">
+	    		<f:then>
+	    			<a href="javascript:;" onclick="return setpageno({previous})">&laquo;  Previous</a>
+	    		</f:then>
+	    		<f:else>
+	    			<a href="javascript:;">&laquo;  Previous</a>
+	    		</f:else>
+	    	</f:if>
+	    </li>
+
+		<f:for each="{pages}" as="page" iteration="it">
+	    	<li>
+				<a href="javascript:;" onclick="return setpageno({page})">{page}</a>
+			</li>
+	    </f:for>
+
+	    <li>
+	    	<f:if condition="{next}">
+	    		<f:then>
+	    			<a href="javascript:;" onclick="return setpageno({next})">Next  &raquo;</a>
+	    		</f:then>
+	    		<f:else>
+	    			<a href="javascript:;">Next  &raquo;</a>
+	    		</f:else>
+	    	</f:if>
+	    </li>
+	</ul>
+</div>
+
