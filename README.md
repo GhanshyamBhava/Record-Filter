@@ -1,4 +1,4 @@
-# Record Filter
+# Cars
 Simple TYPO3 CMS Extension for beginer.
 
 * **Features**
