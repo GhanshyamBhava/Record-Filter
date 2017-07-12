@@ -149,64 +149,82 @@ class CarsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @param \Vehicle\Cars\Domain\Model\Cars $filterCar
      * @return void
      */
-    public function filterAction(\Vehicle\Cars\Domain\Model\Cars $filterCar)
+    public function filterAction(\Vehicle\Cars\Domain\Model\Cars $filterCar = NULL)
     {
-        // Item per page
-        $recPerPage = $this->settings['maxItem'];
-
-        //get number of records
-        $counts = count($this->carsRepository->FindByFilter($filterCar,0,0));
-
-        // Create pages segment of the totle page
-        $totle = ceil($counts/$recPerPage);
-        
-        // Get target page id
-        $targetpage = $filterCar->getPageno();
-        
-        if($targetpage) {                          
-            $curpage = $targetpage;
-        } else {
-            $curpage = 1; 
+        // Return to the listing page if object is null        
+        if ($filterCar == NULL) {
+            $this->redirect('list');
         }
 
-        // Count Offset
-        $offset = ($targetpage-1) * $recPerPage;
-        
-        if($curpage > 1) 
-        {
-            // Previous
-            $previous=$curpage-1;
-        }  
-        
-        if($curpage < $totle )
-        {   
-            // Next
-            $next = $curpage+1;
+        if(count($filterCar->getCarClass())>0
+            || count($filterCar->getFuelType())>0
+            || $filterCar->getMaxprice()!=null
+            || $filterCar->getMinprice()!=null
+            || $filterCar->getCompany()!=null) {
+
+            // Get Item per page
+            $recPerPage = $this->settings['maxItem'];
+
+            //get number of records
+            $counts = count($this->carsRepository->FindByFilter($filterCar,0,0));
+
+            // Create pages segment of the totle page
+            $totle = ceil($counts/$recPerPage);
+            
+            // Get target page id
+            $targetpage = $filterCar->getPageno();
+            
+            if($targetpage) {                          
+                $curpage = $targetpage;
+            } else {
+                $curpage = 1; 
+            }
+
+            // Count Offset
+            $offset = ($targetpage-1) * $recPerPage;
+            
+            if($curpage > 1) 
+            {
+                // Previous
+                $previous=$curpage-1;
+            }  
+            
+            if($curpage < $totle )
+            {   
+                // Next
+                $next = $curpage+1;
+            }
+
+            $pages = array();
+            
+            for($i=1 ; $i<=$totle ;$i++)
+            {   
+                $pages[] = $i;
+            }
+
+            $companies = $this->companyRepository->findAll();
+            $this->view->assign('company', $companies);
+
+            $fluelTypes = $this->fluelTypeRepository->findAll();
+            $this->view->assign('fluelTypes', $fluelTypes);
+
+            $fluelTypes = $this->carClassRepository->findAll();
+            $this->view->assign('carClass', $fluelTypes);
+
+            $filterData = $this->carsRepository->FindByFilter($filterCar, intval($offset), intval($recPerPage));
+            
+            $this->view->assign('filterData', $filterData);
+
+            $this->view->assign('carFilter', $filterCar);
+            $this->view->assign('minprice',$filterCar->getMinprice());
+            $this->view->assign('maxprice',$filterCar->getMaxprice());
+
+            $this->view->assign('pages',$pages);
+            $this->view->assign('curpage', $curpage);
+            $this->view->assign('previous',$previous);
+            $this->view->assign('next',$next);
+            $this->view->assign('totalpage', $totle);
         }
 
-        $pages = array();
-        
-        for($i=1 ; $i<=$totle ;$i++)
-        {   
-            $pages[] = $i;
-        }
-
-        $companies = $this->companyRepository->findAll();
-        $this->view->assign('company', $companies);
-
-        $fluelTypes = $this->fluelTypeRepository->findAll();
-        $this->view->assign('fluelTypes', $fluelTypes);
-
-        $fluelTypes = $this->carClassRepository->findAll();
-        $this->view->assign('carClass', $fluelTypes);
-
-        $filterData = $this->carsRepository->FindByFilter($filterCar, intval($offset), intval($recPerPage));
-        $this->view->assign('filterData', $filterData);
-
-        $this->view->assign('pages',$pages);
-        $this->view->assign('previous',$previous);
-        $this->view->assign('next',$next);
-        $this->view->assign('totalpage', $totle);
-        
     }
 }

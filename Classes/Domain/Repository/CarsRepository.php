@@ -1,7 +1,7 @@
 <?php
 namespace Vehicle\Cars\Domain\Repository;
 
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility as Debug;
 
 /***
  *
@@ -21,16 +21,12 @@ class CarsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
 	private $company = NULL;
-	private $fueltype;
-	private $cclass;
+	private $fueltype = NULL;
+	private $cclass = NULL;
 
 	/**
      * Get Objects by filter
-     *
-     * @param text $count
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
-     */
+	 */
 	public function FindByFilter($arg = '',$offset='', $limit='')
 	{
 		$this->company = $arg->getCompany();
@@ -40,51 +36,43 @@ class CarsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		$query = $this->createQuery();
 		$filterData = [];
 
-		$filterData[] = $query->equals('company', $this->company);
+		if($this->company != NULL){
+			$filterData[] = $query->equals('company', $this->company);
+		}
 
-		if (count($carcla)>1) {
+		if (count($this->cclass) >= 1) {
 			$filterData[] = $query->in('carClass',$this->cclass);
 		}
 
-		if(count($this->fueltype)>1){
+		if(count($this->fueltype) >=1 ){
 			foreach ($this->fueltype as $key => $value) {
-	    		if($value != NULL){
+				if($value != NULL){
 					$queryFuel[] = $query->contains('fuelType',$value->getUid());
-	    		}
-        	}
+				}
+			}
 			$filterData[] = $query->logicalOr($queryFuel);
 		}
 
-
-		if ($arg->getMaxprice()) {
-			$filterData[] = $query->greaterThanOrEqual('price', $arg->getMaxprice());
-		}
-
 		if ($arg->getMinprice()) {
-			$filterData[] = $query->lessThanOrEqual('price', $arg->getMinprice());
-		}
+			$filterData[] =$query->greaterThanOrEqual('price', $arg->getMinprice());
+		} 
+		if ($arg->getMaxprice()) {
+			$filterData[] =$query->lessThanOrEqual('price', $arg->getMaxprice());
+		} 
 
 		if ($offset>0) {
 			$query->setOffset($offset);
 		}
 		if ($limit>0) {
 			$query->setLimit($limit);
-		}		
-		
+		}
 
 		$query->matching(
 	  		$query->logicalAnd($filterData)
   		);
 
   		return $query->execute();
-	}
-
-	public function findAll()
-	{
-		$query = $this->createQuery();
-		$constraints =  $query->statement("SELECT * FROM tx_cars_domain_model_cars");
-        $query->logicalAnd($constraints);
-        return $result= $query->execute();
+  		// $this->debugQuery($query->execute());die();
 	}
 
 	/**

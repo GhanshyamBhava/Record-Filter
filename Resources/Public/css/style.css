@@ -3,7 +3,6 @@ body{
   color: white;
   font-family: 'Ubuntu', sans-serif;
   background: rgba(0, 0, 0, 0.5) url(../image/bg.jpg);
-  background-repeat: no-repeat;
   background-attachment: fixed;
 }
 

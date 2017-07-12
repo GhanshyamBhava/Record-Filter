@@ -24,16 +24,15 @@ Otherwise your changes will be overwritten the next time you save the extension 
 					<div class="alert alert-info">
 						<f:form action="filter" name="filterCar">
 							<h3>Get Your Car</h3><hr/>
-						    <f:render partial="Company/FormFields" arguments="{company: company}" />
-						    <f:render partial="FluelType/FormFields" arguments="{fluelTypes: fluelTypes}" />
-							<f:render partial="CarClass/FormFields" arguments="{carClasses: carClass}" />
-							<f:render partial="Range/RangeForm" arguments="{carClasses: carClass}" />
-							<f:form.submit name="submit" onclick="return validate();" value="Search" class="btn btn-info" style="width:100%" />
+						    <f:render partial="Cars/FilterForm" arguments="{_all}" />
+							<f:form.hidden property="pageno" id="pageno" value="" />
+							<f:form.submit name="submit" value="Search" class="btn btn-info" style="width:100%" />
 						</f:form>
 					</div>
 				</div>
 				<div class="col-md-8" id="content">
-					<f:for each="{cars}" as="car">
+					<f:widget.paginate objects="{cars}" as="paginatedCars" configuration="{itemsPerPage: settings.maxItem, insertAbove: 1, insertBelow: 1, maximumNumberOfLinks: 10}">
+					<f:for each="{paginatedCars}" as="car">
 						<div class="alert alert-info post-container">
 							<div class="post-thumb">
 						    	<div id="owlCarouselSlider{car.uid}" class="carousel slide" data-ride="carousel">
@@ -90,6 +89,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 						</div>
 				        <hr/>
 					</f:for>
+					</f:widget.paginate>
 				</div>
 			</div>
 		</div>

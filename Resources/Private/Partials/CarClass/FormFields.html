@@ -1,7 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 	<label>Car Class :</label>
 	<div class="clearfix"></div>
-	<f:for each="{carClasses}" as="carcls" iteration="i">
+	<f:for each="{carClass}" as="carcls" iteration="i">
 		<div class="col-md-6">
 			<div class="form-group">
 				<f:form.checkbox property="carClass.{carcls.title}" value="{carcls.uid}"/>

@@ -74,7 +74,7 @@ class Cars extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @var \Vehicle\Cars\Domain\Model\Company
      */
-    protected $company = null;
+    protected $company = 0;
 
     /**
      * fuelType
@@ -281,7 +281,7 @@ class Cars extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \Vehicle\Cars\Domain\Model\Company $company
      * @return void
      */
-    public function setCompany(\Vehicle\Cars\Domain\Model\Company $company)
+    public function setCompany(\Vehicle\Cars\Domain\Model\Company $company = null)
     {
         $this->company = $company;
     }

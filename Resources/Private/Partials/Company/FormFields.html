@@ -2,7 +2,14 @@
 
 	<div class="form-group">
 		<label>Select Company :</label>
-		<f:form.select property="company" options="{company}" optionValueField="uid" optionLabelField="name" class="form-control" />
+		<f:form.select property="company"
+				options="{company}"
+				optionValueField="uid"
+				optionLabelField="name"
+				class="form-control"
+				prependOptionValue="0"
+            	prependOptionLabel="Choose Company"
+		/>
 	</div>
 	<div class="clearfix"></div>
 

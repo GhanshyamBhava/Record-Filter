@@ -1,32 +1,35 @@
-<div align="center">
-	<ul class="pagination" align="center">
-		<li>
-	    	<f:if condition="{previous}">
+<f:if condition="{totalpage}>1">
+	<div align="center">
+		<ul class="pagination" align="center">
+			<f:if condition="{previous}">
 	    		<f:then>
-	    			<a href="javascript:;" onclick="return setpageno({previous})">&laquo;  Previous</a>
+	    			<li>
+	    				<a href="javascript:;" onclick="return setpageno({previous})">&laquo;  Previous</a>
+	    			</li>
 	    		</f:then>
 	    		<f:else>
-	    			<a href="javascript:;">&laquo;  Previous</a>
+		    		<li class="disabled">
+		    			<a href="javascript:;" class="desabled">&laquo;  Previous</a>
+	    			</li>
 	    		</f:else>
 	    	</f:if>
-	    </li>
-
-		<f:for each="{pages}" as="page" iteration="it">
-	    	<li>
-				<a href="javascript:;" onclick="return setpageno({page})">{page}</a>
-			</li>
-	    </f:for>
-
-	    <li>
+			<f:for each="{pages}" as="page" iteration="it">
+				<li class="{f:if(condition:'{page}=={curpage}',then:'active')}">
+					<a href="javascript:;" onclick="return {f:if(condition:'{page}=={curpage}',then:'false',else:'setpageno({page})')}">{page}</a>
+				</li>
+		    </f:for>
 	    	<f:if condition="{next}">
 	    		<f:then>
-	    			<a href="javascript:;" onclick="return setpageno({next})">Next  &raquo;</a>
+	    			<li>
+	    				<a href="javascript:;" onclick="return setpageno({next})">Next  &raquo;</a>
+	    			</li>
 	    		</f:then>
 	    		<f:else>
-	    			<a href="javascript:;">Next  &raquo;</a>
+	    			<li class="disabled">
+	    				<a href="javascript:;">Next  &raquo;</a>
+	    			</li>
 	    		</f:else>
 	    	</f:if>
-	    </li>
-	</ul>
-</div>
-
+		</ul>
+	</div>
+</f:if>
